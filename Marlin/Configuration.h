@@ -22,13 +22,13 @@
 #pragma once
 
 //JUST uncomment the option for your machine
-#define V6_330_TITAN_TMC 1
-//#define V6_330_TITAN_NO_TMC 1
-//  #define V6_330_NO_TITAN_TMC 1
-//#define V6_330_NO_TITAN_NO_TMC 1
+// #define V6_330_TITAN_TMC 1
+// #define V6_330_TITAN_NO_TMC 1
+#define V6_330_NO_TITAN_TMC 1
+// #define V6_330_NO_TITAN_NO_TMC 1
 // #define V6_400_TITAN_TMC 1
 // #define V6_400_NO_TITAN_TMC 1
-//#define V6_500_TITAN_TMC 1
+// #define V6_500_TITAN_TMC 1
 
 // #define V5_330_TITAN_TMC 1
 // #define V5_330_TITAN_NO_TMC 1
@@ -893,7 +893,7 @@
 #if WITH_TMC && WITH_TITAN
   #define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 800, 764.53 }
 #elif WITH_TMC && !WITH_TITAN
-  #define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 800, 186 }
+  #define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 800, 764.53 }  // ÄNDERUNG wegen FYSTEC METALL BMG, VORHER:  { 160, 160, 800, 186 } 
 #elif WITH_TITAN && !WITH_TMC
   #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 420 }
 #else
