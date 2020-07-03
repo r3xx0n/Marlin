@@ -146,6 +146,8 @@
 
 #endif
 
+#define CUSTOM_MACHINE_NAME "r3xx0ns X5SA Pro"
+
 /**
  * Configuration.h
  *
