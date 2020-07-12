@@ -706,6 +706,7 @@
  * Note: For Bowden Extruders make this large enough to allow load/unload.
  */
 #define PREVENT_LENGTHY_EXTRUDE
+// #define EXTRUDE_MAXLENGTH 200
 #define EXTRUDE_MAXLENGTH 1000
 
 //===========================================================================
@@ -893,24 +894,22 @@
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
 #if WITH_TMC && WITH_TITAN
-  #define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 800, 764.53 }
+  #define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 800, 764.53 } // Original
 #elif WITH_TMC && !WITH_TITAN
-  #define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 800, 810.97 }  // ÄNDERUNG wegen FYSTEC METALL BMG, VORHER:  { 160, 160, 800, 186 } 
+  // #define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 800, 186 } // Original
+  #define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 800, 810.97 } // FYSTEC METALL BMG
 #elif WITH_TITAN && !WITH_TMC
   #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 420 }
 #else
   #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 93 }
 #endif
 
-// #define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 800, 420 }
-//TITAN EXTRUDER:
-//#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 92.6 }
-
 /**
  * Default Max Feed Rate (mm/s)
  * Override with M203
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
+// #define DEFAULT_MAX_FEEDRATE          { 300, 300, 5, 25 }
 #define DEFAULT_MAX_FEEDRATE          { 300, 300, 5, 50 }
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
@@ -924,6 +923,7 @@
  * Override with M201
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
+// #define DEFAULT_MAX_ACCELERATION      { 3000, 3000, 100, 5000 }
 #define DEFAULT_MAX_ACCELERATION      { 3000, 3000, 100, 5000 }
 
 //#define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
@@ -1144,8 +1144,9 @@
  *
  * Specify a Probe position as { X, Y, Z }
  */
+// #define NOZZLE_TO_PROBE_OFFSET { -35, -0, 0 } // Tronxy Original Kühler
 // #define NOZZLE_TO_PROBE_OFFSET { -54, -12, 0 }  // Petsfang MK8
-#define NOZZLE_TO_PROBE_OFFSET { -36, -7, 0 }
+#define NOZZLE_TO_PROBE_OFFSET { -36, -7, 0 } // E3D V6 Halterung
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
@@ -1534,7 +1535,7 @@
   #define LEVEL_CORNERS_INSET_LFRB { 30, 30, 30, 30 } // (mm) Left, Front, Right, Back insets
   #define LEVEL_CORNERS_HEIGHT      0.0   // (mm) Z height of nozzle at leveling points
   #define LEVEL_CORNERS_Z_HOP       4.0   // (mm) Z height of nozzle between leveling points
-  //#define LEVEL_CENTER_TOO              // Move to the center after the last corner
+  #define LEVEL_CENTER_TOO              // Move to the center after the last corner
 #endif
 
 /**
@@ -1682,13 +1683,14 @@
 // Preheat Constants
 #define PREHEAT_1_LABEL       "PLA"
 #define PREHEAT_1_TEMP_HOTEND 180
-#define PREHEAT_1_TEMP_BED     50
-#define PREHEAT_1_FAN_SPEED     0 // Value from 0 to 255
+#define PREHEAT_1_TEMP_BED    50
+#define PREHEAT_1_FAN_SPEED   0 // Value from 0 to 255
 
-#define PREHEAT_2_LABEL       "ABS"
-#define PREHEAT_2_TEMP_HOTEND 240
+#define PREHEAT_2_LABEL       "PETG"
+#define PREHEAT_2_TEMP_HOTEND 230
 #define PREHEAT_2_TEMP_BED    90
-#define PREHEAT_2_FAN_SPEED     0 // Value from 0 to 255
+#define PREHEAT_2_FAN_SPEED   0 // Value from 0 to 255
+
 
 /**
  * Nozzle Park
@@ -1705,7 +1707,8 @@
 
 #if ENABLED(NOZZLE_PARK_FEATURE)
   // Specify a park position as { X, Y, Z_raise }
-  #define NOZZLE_PARK_POINT { (X_MIN_POS + 10), (Y_MAX_POS - 20), 20 }
+  // #define NOZZLE_PARK_POINT { (X_MIN_POS + 10), (Y_MAX_POS - 10), 20 } // Original
+  #define NOZZLE_PARK_POINT { (X_MIN_POS + 10), (Y_MAX_POS - 20), 20 } // Damit er hinten nicht dagegen kracht.
   //#define NOZZLE_PARK_X_ONLY          // X move only is required to park
   //#define NOZZLE_PARK_Y_ONLY          // Y move only is required to park
   #define NOZZLE_PARK_Z_RAISE_MIN   2   // (mm) Always raise Z by at least this distance
