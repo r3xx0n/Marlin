@@ -923,7 +923,7 @@
  * Override with M201
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-// #define DEFAULT_MAX_ACCELERATION      { 3000, 3000, 100, 5000 }
+// #define DEFAULT_MAX_ACCELERATION      { 1500, 1500, 100, 5000 }
 #define DEFAULT_MAX_ACCELERATION      { 3000, 3000, 100, 5000 }
 
 //#define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
@@ -1687,7 +1687,7 @@
 #define PREHEAT_1_FAN_SPEED   0 // Value from 0 to 255
 
 #define PREHEAT_2_LABEL       "PETG"
-#define PREHEAT_2_TEMP_HOTEND 230
+#define PREHEAT_2_TEMP_HOTEND 220
 #define PREHEAT_2_TEMP_BED    90
 #define PREHEAT_2_FAN_SPEED   0 // Value from 0 to 255
 
